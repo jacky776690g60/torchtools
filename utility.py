@@ -19,7 +19,9 @@ __all__ = (
     'TorchNNModuleType', 'TorchOptimizerType', 'TorchLossFunctionType', 'PltFigureType',
     # Fonts
     'FONT_TITLE_BG', 'FONT_TITLE_MD', 'FONT_TITLE_SM', 'FONT_SUBTITLE_MD', 
-    'FONT_SUBTITLE_SM', 'FONT_CONTEXT_0'
+    'FONT_SUBTITLE_SM', 'FONT_CONTEXT_0',
+    # Functions
+    'is_cuda_installed'
 )
 
 # =============================
@@ -107,3 +109,22 @@ FONT_SUBTITLE_SM    = _fontbook.build()
 _fontbook.update(fontname='Verdana', fontsize=11)
 FONT_CONTEXT_0      = _fontbook.build()
 'Font to be used in `matplotlib`'
+
+
+
+
+
+
+
+
+def is_cuda_installed() -> bool:
+    cuda_available = torch.cuda.is_available()
+
+    print("Is CUDA available? ", cuda_available)
+
+    if cuda_available:
+        print("CUDA Device: ", torch.cuda.get_device_name(0))
+        print("CUDA Version: ", torch.version.cuda)
+    else:
+        print("CUDA is not available.")
+    
